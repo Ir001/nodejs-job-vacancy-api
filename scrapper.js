@@ -24,8 +24,11 @@ const scrapeJob = async () => {
 }
 
 const extractJob = elementSelector => {
-    const title = elementSelector.find('.single-job-ads').find('h3').text().trim();
-    return {title};
+    const detail = elementSelector.find('.single-job-ads');
+    const title = detail.find('h3').eq(0).text().trim();
+    const link = detail.find('h3').find('a').attr('href').trim();
+    const company = detail.find('p > a').eq(0).text().trim();
+    return {title,link,company};
 }
 
 module.exports = scrapeJob;
