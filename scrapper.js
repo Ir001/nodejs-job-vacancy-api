@@ -28,7 +28,19 @@ const extractJob = elementSelector => {
     const title = detail.find('h3').eq(0).text().trim();
     const link = detail.find('h3').find('a').attr('href').trim();
     const company = detail.find('p > a').eq(0).text().trim();
-    return {title,link,company};
+    const location = detail.find('p > span').eq(0).text().trim();
+    const salary = detail.find('p').eq(1).text().trim();
+    /* Detail Job  */
+    
+    return {title,link,company,location,salary, data : detailJob(link)};
+}
+
+const detailJob = async link => {
+    const detail = await fetchHtml(link);
+    const selector = cheerio.load(detail);
+    const job = selector('body').find('.job-detail');
+    const requirement = job.find('.job_req').html().trim();
+    return {requirement};
 }
 
 module.exports = scrapeJob;
