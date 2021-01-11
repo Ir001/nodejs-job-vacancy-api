@@ -1,15 +1,14 @@
 const axios = require('axios').default;
 const cheerio = require('cheerio');
 const url = 'https://www.jobs.id/lowongan-kerja';
-function getHtml(url,callback){
-    const response = axios.get(url)
-        .then(response => {
-            return callback(response.data)
-        })
-        .catch(e => console.error(e));
-    return response;
+async function getHtml(url,callback){
+    const response = await axios.get(url);
+    let data = callback(response.data);
+    return new Promise((response, reject) => {
+        return data;
+    });
 }
-function detailJob(el){
+async function detailJob(el){
     const $ = cheerio.load(el);
     const job = $('body').find('.job-detail');
     const requirement = job.find('.job_req').html().trim();
@@ -35,32 +34,29 @@ function detailJob(el){
     return {requirement,description,category,posted_at,deadline,
     about_company,logo, industry, size_company, office_address, apply};
 }
-function jobList(html){
+async function jobList(html){
     const $ = cheerio.load(html);
     const jobs = $('body').find('.single-job-ads');
     let data = [];
     jobs.map((idx,el) => {
         data.push(extractJob($(el)));
     })
-    return data;
+    return new Promise((resolve, reject) => {
+        return data;
+    })
 }
-function extractJob(el){
+async function extractJob(el){
     const title = el.find('h3').eq(0).text().trim();
     const link = el.find('h3').find('a').attr('href').trim();
     const company = el.find('p > a').eq(0).text().trim();
     const location = el.find('p > span').eq(0).text().trim();
     const salary = getSalary(el.find('p').eq(1).text().trim());
     let job = [];
-    let data = getHtml(link,detailJob)
-        .then(res => {
-            job = {title,company,location,salary,res};
-            return job;
-        })
-        .catch(err => console.log(err));
-    let res = data
-        .then((result) => {console.log(result)})
-        .catch(err => console.error(err));
-    return res;
+    let data = getHtml(link,detailJob);
+    job = {title,company,location,salary,data};
+    return new Promise((resolve, reject) => {
+        return job;
+    });
 }
 function getSalary(salary){
     let new_salary = salary.split('\n');
@@ -75,6 +71,16 @@ function getSalary(salary){
     }
     return {start,end,secret};
 }
-
-let response = getHtml(url,jobList);
-response.then(success => console.log(success));
+let response = getHtml(url, jobList);
+response.then(result =>{
+    return result;
+}).then(res => {
+    return res;
+}).then(res => {
+    new Promise((resolve, reject) => {
+        console.log(res);
+    })
+    console.log(res);
+}).catch(e => {
+    console.error(e);
+})
