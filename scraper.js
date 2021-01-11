@@ -36,8 +36,9 @@ const scraper = (callback) => {
     }).then(data => {
         return Promise.all(
             data.map((basic) => {
-                let detail = jobDetail(basic.link);
-                return Promise.resolve({basic, detail});
+               return jobDetail(basic.link).then(detail => {
+                    return Promise.resolve({basic, detail});
+                });
             })
         );
     }).then((response) => {
