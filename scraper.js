@@ -16,22 +16,27 @@ function getSalary(salary){
     return {start,end,secret};
 }
 
-const scraper = (callback) => {
+const scraper = (callback,request=25) => {
     axios.get(URL).then(({data}) => {
         return data;
     }).then((html) => {
         const $ = cheerio.load(html);
         const jobs = $('body').find('.single-job-ads');
         let data = [];
-        jobs.map((idx,element) => {
-            const el = $(element);
+        for (let index = 0; index < request; index++) {
+            if(index >= jobs.length ){
+                break;
+            }
+            const el = $(jobs[index]);
             const title = el.find('h3').eq(0).text().trim();
             const link = el.find('h3').find('a').attr('href').trim();
-            const company = el.find('p > a').eq(0).text().trim();
+            let company = el.find('p > a[class="bold"]').eq(0).text().trim();
+            company = company == '' ? 'Perusahaan Dirahasiakan' : company;
             const location = el.find('p > span').eq(0).text().trim();
             const salary = getSalary(el.find('p').eq(1).text().trim());
             data.push({link,title,company,location,salary});
-        });
+                        
+        }
         return data;
     }).then(data => {
         return Promise.all(
@@ -48,5 +53,3 @@ const scraper = (callback) => {
     });
 }
 module.exports = scraper;
-// scraper(console.log);
-// console.log(scrape);

@@ -1,5 +1,5 @@
 {
-  "name": "nodejs-scraping",
+  "name": "nodejs-job-vacancy-api",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
@@ -7,5 +7,27 @@
     "axios": "^0.21.1",
     "cheerio": "^1.0.0-rc.5",
     "express": "^4.17.1"
-  }
+  },
+  "description": "Job Vacancy API Indonesia",
+  "devDependencies": {},
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ir001/nodejs-job-vacancy-api.git"
+  },
+  "keywords": [
+    "NodeJs",
+    "Job",
+    "Vacancy",
+    "API",
+    "API",
+    "Express"
+  ],
+  "author": "Irwan Antonio",
+  "bugs": {
+    "url": "https://github.com/Ir001/nodejs-job-vacancy-api/issues"
+  },
+  "homepage": "https://github.com/Ir001/nodejs-job-vacancy-api#readme"
 }

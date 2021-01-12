@@ -20,9 +20,14 @@ const jobDetail  = function(URL){
             const about_company = $('body').find('.about-company').eq(1).text().trim();
             const logo = company.find('img').attr('src')?.trim();
             const industry = company.find('p').eq(0).find('span').text().trim();
-            const size_company = company.find('p').eq(1).find('b').text();
-            const office_address = company.find('p').eq(2).find('b').text();
-            // 
+            const panel_company = company.find('p');
+            let size_company = panel_company.find('*:contains("Ukuran Perusahaan:")').parent().find('b').text().trim();
+            let range = size_company.split(' ');
+            size_company = {
+                from : range[0] == '' ? null : range[0],
+                to : range[2] == undefined ? null : range[2],
+            }
+            let office_address = panel_company.find('*:contains("Kantor Pusat:")').parent().find('b').text().trim();
             const apply = $('body').find('.modal-modren').find('form').attr('action').trim();
             resolve({requirement,description,category,posted_at,deadline,
             about_company,logo, industry, size_company, office_address, apply});
