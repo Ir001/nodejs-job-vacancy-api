@@ -7,7 +7,7 @@ const jobDetail  = function(URL){
             const $ = cheerio.load(data);
             const job = $('body').find('.job-detail');
             const requirement = job.find('.job_req').html().trim();
-            const description = job.find('.job_desc')?.html()?.trim();
+            const description = job.find('.job_desc').html().trim();
             // Top Panel
             const top = job.find('.row');
             const category = top.eq(0).find('h4').find('a').text().trim();
