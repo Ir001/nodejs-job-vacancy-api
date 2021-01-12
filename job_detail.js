@@ -18,7 +18,7 @@ const jobDetail  = function(URL){
             // Company
             const company = $('body').find('.company-profile > .panel-body');
             const about_company = $('body').find('.about-company').eq(1).text().trim();
-            const logo = company.find('img').attr('src').trim();
+            const logo = company.find('img').attr('src');
             const industry = company.find('p').eq(0).find('span').text().trim();
             const panel_company = company.find('p');
             let size_company = panel_company.find('*:contains("Ukuran Perusahaan:")').parent().find('b').text().trim();
