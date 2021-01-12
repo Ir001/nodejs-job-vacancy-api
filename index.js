@@ -8,7 +8,7 @@ app.get('/',(req, res) => {
             showJson = (data) =>{
                 res.json(data);
             }
-            scraper(showJson,req.query.limit);
+            return scraper(showJson,req.query.limit);
         }else{
             res.json({success:true,message : ':P'});
         }
