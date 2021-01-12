@@ -6,8 +6,8 @@ const jobDetail  = function(URL){
         axios.get(URL).then(({data}) => {
             const $ = cheerio.load(data);
             const job = $('body').find('.job-detail');
-            const requirement = job.find('.job_req').html().trim();
-            const description = job.find('.job_desc').html().trim();
+            const requirement = job.find('.job_req').html();
+            const description = job.find('.job_desc').html();
             // Top Panel
             const top = job.find('.row');
             const category = top.eq(0).find('h4').find('a').text().trim();
