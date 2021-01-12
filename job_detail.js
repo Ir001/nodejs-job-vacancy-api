@@ -31,6 +31,8 @@ const jobDetail  = function(URL){
             const apply = $('body').find('.modal-modren').find('form').attr('action').trim();
             resolve({requirement,description,category,posted_at,deadline,
             about_company,logo, industry, size_company, office_address, apply});
+        }).catch((err) => {
+            console.error(err);
         })
     });
 }
