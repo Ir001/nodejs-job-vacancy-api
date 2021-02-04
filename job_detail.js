@@ -28,9 +28,10 @@ const jobDetail  = function(URL){
                 to : range[2] == undefined ? null : range[2],
             }
             let office_address = panel_company.find('*:contains("Kantor Pusat:")').parent().find('b').text().trim();
-            const apply = $('body').find('.modal-modren').find('form').attr('action').trim();
+            const apply_linkedin = $('body').find('.modal-modren').find('form').attr('action').trim();
+            const apply_google = $('body').find('.modal-modren').find('.btn-google').attr('href').trim();
             resolve({requirement,description,category,posted_at,deadline,
-            about_company,logo, industry, size_company, office_address, apply});
+            about_company,logo, industry, size_company, office_address, apply_linkedin, apply_google});
         }).catch((err) => {
             console.error(err);
         })

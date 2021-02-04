@@ -43,6 +43,30 @@ const scraper = (callback,request=25) => {
             data.map((basic) => {
                return jobDetail(basic.link).then(detail => {
                     return Promise.resolve({basic, detail});
+                }).then(data => {
+                    let clean = [];
+                    clean = {
+                        origin_post : data.basic.link,
+                        title : data.basic.link,
+                        category : data.detail.category,
+                        location : data.basic.location,
+                        salary : data.basic.salary,
+                        description : data.detail.description,
+                        requirement : data.detail.requirement,
+                        posted_at : data.detail.posted_at,
+                        deadline : data.detail.deadline,
+                        apply_linkedin : data.detail.apply_linkedin,
+                        apply_google : data.detail.apply_google,
+                        company : {
+                            company : data.basic.company,
+                            industry :data.detail.industry,
+                            logo : data.detail.logo,
+                            about : data.detail.about_company,
+                            size : data.detail.size_company,
+                            address : data.detail.office_address,
+                        }
+                    }                    
+                    return clean;
                 });
             })
         );
@@ -53,3 +77,4 @@ const scraper = (callback,request=25) => {
     });
 }
 module.exports = scraper;
+// scraper(console.log,1)
