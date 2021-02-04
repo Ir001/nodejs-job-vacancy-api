@@ -19,3 +19,9 @@ http://localhost:3000/?secret=irwan-antonio&limit=10
 Limit maximal 25.
 ## Preview
 ![Response](https://github.com/Ir001/nodejs-job-vacancy-api/blob/main/screenshot.png?raw=true)
+
+## Change Log
+4 Feb 2021
+~ Clean response API
+~ Add apply by Google
+~ Add apply by Linkedin
