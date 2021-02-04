@@ -47,7 +47,7 @@ const scraper = (callback,request=25) => {
                     let clean = [];
                     clean = {
                         origin_post : data.basic.link,
-                        title : data.basic.link,
+                        title : data.basic.title,
                         category : data.detail.category,
                         location : data.basic.location,
                         salary : data.basic.salary,
