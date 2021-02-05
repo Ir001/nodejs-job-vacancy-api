@@ -8,8 +8,8 @@ function getSalary(salary){
     let end = 0;
     let secret = false;
     if(new_salary[1] !== undefined && new_salary[3] !== undefined){
-        start = new_salary[1].trim();
-        end = new_salary[3].trim();
+        start = Number(new_salary[1].trim().replace(/\./g,''));
+        end = Number(new_salary[3].trim().replace(/\./g,''));
     }else if(new_salary[0] === 'Gaji Dirahasiakan'){
         secret = true;
     }
