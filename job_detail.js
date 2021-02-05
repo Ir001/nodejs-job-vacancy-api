@@ -24,8 +24,8 @@ const jobDetail  = function(URL){
             let size_company = panel_company.find('*:contains("Ukuran Perusahaan:")').parent().find('b').text().trim();
             let range = size_company.split(' ');
             size_company = {
-                from : range[0] == '' ? null : range[0],
-                to : range[2] == undefined ? null : range[2],
+                from : range[0] == '' ? 0 : range[0],
+                to : range[2] == undefined ? 0 : range[2],
             }
             let office_address = panel_company.find('*:contains("Kantor Pusat:")').parent().find('b').text().trim();
             const apply_linkedin = $('body').find('.modal-modren').find('form').attr('action').trim();
