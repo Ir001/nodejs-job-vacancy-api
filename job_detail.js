@@ -13,11 +13,10 @@ const jobDetail  = function(URL){
             const top = job.find('.row');
             const category = top.eq(0).find('h4').find('a').text().trim();
             let posted_at = top.eq(3).find('p').eq(0).text().trim().split('Diiklankan sejak\n');
-            posted_at = posted_at[1].trim();
+            posted_at = posted_at[1]?.trim();
             posted_at = moment(posted_at,'DD MMM YYYY','en').format('YYYY-MM-DD');
             let deadline = top.eq(3).find('p').eq(1).text().trim().split('Ditutup pada\n');
-            deadline = deadline[1].trim();
-            console.log(deadline);
+            deadline = deadline[1]?.trim();
             deadline = moment(deadline,'DD MMM YYYY','en').format('YYYY-MM-DD');
             // Company
             const company = $('body').find('.company-profile > .panel-body');
