@@ -1,6 +1,7 @@
 const axios = require('axios').default;
 const cheerio = require('cheerio');
-
+const moment = require('moment');
+moment.locale('id');
 const jobDetail  = function(URL){
     return new Promise((resolve,reject) => {
         axios.get(URL).then(({data}) => {
@@ -13,8 +14,11 @@ const jobDetail  = function(URL){
             const category = top.eq(0).find('h4').find('a').text().trim();
             let posted_at = top.eq(3).find('p').eq(0).text().trim().split('Diiklankan sejak\n');
             posted_at = posted_at[1].trim();
+            posted_at = moment(posted_at,'DD MMM YYYY','en').format('YYYY-MM-DD');
             let deadline = top.eq(3).find('p').eq(1).text().trim().split('Ditutup pada\n');
             deadline = deadline[1].trim();
+            console.log(deadline);
+            deadline = moment(deadline,'DD MMM YYYY','en').format('YYYY-MM-DD');
             // Company
             const company = $('body').find('.company-profile > .panel-body');
             const about_company = $('body').find('.about-company').eq(1).text().trim();
