@@ -11,7 +11,7 @@ const jobDetail  = function(URL){
             const description = job.find('.job_desc').html();
             // Top Panel
             const top = job.find('.row');
-            const category = top.eq(0).find('h4').find('a').text().trim();
+            const category = top.eq(0).find('h4').find('a').eq(0).text().trim();
             let posted_at = top.eq(3).find('p').eq(0).text().trim().split('Diiklankan sejak\n');
             posted_at = posted_at[1]?.trim();
             posted_at = moment(posted_at,'DD MMM YYYY','en').format('YYYY-MM-DD');
