@@ -7,7 +7,7 @@ app.get('/',(req, res) => {
         showJson = (data) =>{
             res.json(data);
         }
-        let limit = req.query.limit !== undefined ? req.query.limit : 25;
+        let limit = req?.query?.limit !== undefined || null ? req.query.limit : 25;
         console.log(`Grabing ${limit} url`); 
         return scraper(showJson,limit);        
     }catch(e){
