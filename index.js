@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const port = process.env.PORT || 3000;
 const scraper = require('./scraper');
+const topkarirScraper = require('./topkarir/App');
 app.get('/',(req, res) => {
     try{
         showJson = (data) =>{
@@ -16,7 +17,10 @@ app.get('/',(req, res) => {
 });
 app.get('/top-karir', (req, res)=>{
     try{
-        return res.json({success : true, 'data' : {}});
+        showJson = (data) =>{
+            res.json(data);
+        }
+        return topkarirScraper.scrape(showJson);
     }catch(e){
         return res.json({success : false, 'message' : e.toString()});
     }
