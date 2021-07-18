@@ -13,8 +13,15 @@ app.get('/',(req, res) => {
     }catch(e){
         res.send(`Error : ${e}`);
     }
+});
+app.get('/top-karir', (req, res)=>{
+    try{
+        return res.json({success : true, 'data' : {}});
+    }catch(e){
+        return res.json({success : false, 'message' : e.toString()});
+    }
 })
 
 app.listen(port, () => {
-    console.log(`Application running in port: ${port}`);
+    console.log(`Application running in http://localhost:${port}/`);
 })
