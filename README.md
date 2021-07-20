@@ -46,3 +46,9 @@ Limit maximal 25.
 <li>~ Fix deadline & publshed_at to format YYYY-MM-DD</li>
 <li>~ Remove secret GET parameter</li>
 </ul>
+
+20 July 2021
+
+<ul>
+<li>~ Add scape other site ( http://localhost:3000/top-karir)</li>
+</ul>
