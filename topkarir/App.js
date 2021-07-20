@@ -39,7 +39,6 @@ let detailPost = async (job)=>{
         let element = $('body').first();
         let topPanel = element.find('#detail-comprof').first();
         let headers = getInfoHeader(topPanel.text());
-        console.log(headers);
         let regency = headers?.[0];
         let category = headers?.[1];
         let posted_at = getInfoPostedAt(headers?.[2]);
