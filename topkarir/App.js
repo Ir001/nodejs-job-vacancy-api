@@ -7,7 +7,7 @@ let scrape = async (callback)=> {
     const data = request.data;
     const $ = cheerio.load(data);
     const jobsEl = $('body').find('.job-card');
-    console.log(`Trying to get ${jobsEl.length} jobs`,`\n Loading...`);
+    console.log(`Trying to get ${jobsEl.length} jobs`,`\nLoading...`);
     let job = [];
     for (let index = 0; index < jobsEl.length; index++) {
         let el = $(jobsEl[index]);
