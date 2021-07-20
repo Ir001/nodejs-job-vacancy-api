@@ -20,7 +20,9 @@ app.get('/top-karir', (req, res)=>{
         showJson = (data) =>{
             res.json(data);
         }
-        return topkarirScraper.scrape(showJson);
+        return topkarirScraper.scrape(showJson).catch(e => {
+            res.json({success : false, message : e.toString()});
+        });
     }catch(e){
         return res.json({success : false, 'message' : e.toString()});
     }
