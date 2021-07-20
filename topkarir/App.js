@@ -101,9 +101,4 @@ let getInfoPostedAt = (str) => {
         return new Date();
     }
 }
-// detailPost({origin_post : 'https://www.topkarir.com/lowongan/detil/pt-abc-kogen-dairy-plant-performance-and-it-staff', company : {name : 'x'}})
-// .catch((e)=>{
-//     console.error(e);
-// });
-// scrape(console.log).catch(e=>console.log(e));
 exports.scrape = scrape;
