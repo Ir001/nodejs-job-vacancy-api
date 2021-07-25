@@ -52,3 +52,8 @@ Limit maximal 25.
 <ul>
 <li>~ Add scape other site ( http://localhost:3000/top-karir)</li>
 </ul>
+25 July 2021
+
+<ul>
+<li>~ Add scape other site ( http://localhost:3000/joblum)</li>
+</ul>
