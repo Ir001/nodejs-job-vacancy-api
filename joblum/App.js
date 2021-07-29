@@ -39,8 +39,8 @@ let scrape = async (callback)=>{
                 industry,
                 salary,
                 posted_at,
-                job_description,
                 apply,
+                job_description,
                 about_company
             };
             return post;
