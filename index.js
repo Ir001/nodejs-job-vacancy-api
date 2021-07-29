@@ -5,15 +5,7 @@ const scraper = require('./scraper');
 const topkarirScraper = require('./topkarir/App');
 const joblumScraper = require('./joblum/App')
 app.get('/',(req, res) => {
-    try{
-        let limit = req?.query?.limit !== undefined || null ? req.query.limit : 25;
-        console.log(`Grabing ${limit} url`); 
-        return scraper((data)=>{
-            res.json(data);
-        },limit);        
-    }catch(e){
-        res.send(`Error : ${e}`);
-    }
+   res.json({success:false,message:'Maintentance!'})
 });
 app.get('/top-karir', (req, res)=>{
     try{
