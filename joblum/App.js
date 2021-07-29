@@ -56,6 +56,7 @@ let scrape = async (callback)=>{
         console.log(`Render in ${elapsed} ms`);
     }catch(er){
         console.error(er);
+        callback({success:false, message : er.toString()})
     }
 }
 let getSalary = (str)=>{
