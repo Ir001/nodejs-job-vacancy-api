@@ -1,12 +1,18 @@
 const axios = require('axios').default;
 const cheerio = require('cheerio');
 const moment = require('moment');
+const randomUseragent = require('random-useragent');
 const BASEURL = 'https://id.joblum.com';
 const URL = `${BASEURL}/jobs`;
 let scrape = async (callback)=>{
     let renderStart = new Date().getTime();
     try{
-        let {data} = await axios.get(URL);
+        let {data} = await axios.get(URL,{
+            headers : {
+                'User-Agent' : randomUseragent.getRandom(),
+                'Referer' : `${BASEURL}/`
+            }
+        });
         let $ = cheerio.load(data);
         let jobs = $('body').find('.item-details');
         console.log(`Found ${jobs.length} job...`);
@@ -23,7 +29,12 @@ let scrape = async (callback)=>{
             let category = jobDetail?.eq(1)?.text()?.trim();
             let industry = jobDetail?.eq(2)?.text()?.trim();
             // Detail
-            let {data} = await axios.get(origin_post);
+            let {data} = await axios.get(origin_post,{
+                headers : {
+                    'User-Agent' : randomUseragent.getRandom(),
+                    'Referer' : `${BASEURL}/`
+                }
+            });
             let detail = $(data);
             let apply = `${BASEURL}${detail.find('.btn-apply')?.attr('href')?.trim()}`;
             let job_description = detail.find('span[itemprop=description]')?.html()?.trim();
