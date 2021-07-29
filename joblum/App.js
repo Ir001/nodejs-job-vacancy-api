@@ -16,7 +16,7 @@ let scrape = async (callback)=>{
             let posted_at = new Date(job.find('.job-date')?.attr('datetime'));
             let salary = getSalary(job.find('.date-desktop')?.next()?.text()?.trim());
             let company = job.find('.company-meta .company-name a')?.text().trim();
-            let location = job.find('.location-desktop')?.text().trim();
+            let location = getLocation(job.find('.location-desktop')?.text().trim());
             let jobDetail = job.find('.job-details span a');
             let specification = jobDetail?.eq(0)?.text()?.trim();
             let category = jobDetail?.eq(1)?.text()?.trim();
@@ -71,5 +71,16 @@ let getSalary = (str)=>{
         max : parseFloat(max),
     };
 
+}
+
+let getLocation = (str)=>{
+    let comma = str.split(',');
+    let _or = str.split('/');
+    if(comma.length > 1){
+        return comma[comma.length-1].trim();
+    }else if(_or.length > 1){
+        return _or[_or.length-1].trim();
+    }
+    return str;
 }
 exports.scrape = scrape;
