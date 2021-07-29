@@ -14,7 +14,7 @@ let scrape = async (callback)=>{
             let origin_post = `${BASEURL}${job.find('.job-title a')?.attr('href')}`;
             let title = job.find('.job-title a span')?.text()?.trim();
             let posted_at = new Date(job.find('.job-date')?.attr('datetime'));
-            let salary = job.find('.date-desktop')?.next()?.text()?.trim();
+            let salary = getSalary(job.find('.date-desktop')?.next()?.text()?.trim());
             let company = job.find('.company-meta .company-name a')?.text().trim();
             let location = job.find('.location-desktop')?.text().trim();
             let jobDetail = job.find('.job-details span a');
@@ -52,5 +52,24 @@ let scrape = async (callback)=>{
     }catch(er){
         console.error(er);
     }
+}
+let getSalary = (str)=>{
+    let regex = /IDR (.*?) - (.*)/gm;
+    let data = regex.exec(str);
+    if(data == null){
+        return {
+            secret : true,
+            min : 0,
+            max : 0,
+        };
+    }
+    let min = data?.[1].replace(/\./g,'');
+    let max = data?.[2].replace(/\./g,'');
+    return {
+        secret : false,
+        min : parseFloat(min),
+        max : parseFloat(max),
+    };
+
 }
 exports.scrape = scrape;
