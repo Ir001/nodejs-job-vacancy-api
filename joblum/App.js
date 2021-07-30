@@ -4,15 +4,19 @@ const moment = require('moment');
 const randomUseragent = require('random-useragent');
 const BASEURL = 'https://id.joblum.com';
 const URL = `${BASEURL}/jobs`;
+const configs = {
+    headers : {
+        'User-Agent' : randomUseragent.getRandom((ua)=>{
+            return ua.browserName === 'Firefox';
+        }),
+        'Referer' : `${BASEURL}/`
+    }
+}
 let scrape = async (callback)=>{
+    console.log(configs);
     let renderStart = new Date().getTime();
     try{
-        let {data} = await axios.get(URL,{
-            headers : {
-                'User-Agent' : randomUseragent.getRandom(),
-                'Referer' : `${BASEURL}/`
-            }
-        });
+        let {data} = await axios.get(URL,configs);
         let $ = cheerio.load(data);
         let jobs = $('body').find('.item-details');
         console.log(`Found ${jobs.length} job...`);
@@ -29,17 +33,12 @@ let scrape = async (callback)=>{
             let category = jobDetail?.eq(1)?.text()?.trim();
             let industry = jobDetail?.eq(2)?.text()?.trim();
             // Detail
-            let {data} = await axios.get(origin_post,{
-                headers : {
-                    'User-Agent' : randomUseragent.getRandom(),
-                    'Referer' : `${BASEURL}/`
-                }
-            });
+            let {data} = await axios.get(origin_post,configs);
             let detail = $(data);
             let apply = `${BASEURL}${detail.find('.btn-apply')?.attr('href')?.trim()}`;
             let job_description = detail.find('span[itemprop=description]')?.html()?.trim();
             let logo = `${BASEURL}${detail.find('img[itemprop=logo]')?.attr('src')}`;
-            let about_company = decodeURI(detail.find('#company-brief a')?.attr('data-full-text'));
+            let about_company = detail?.find('#company-brief a')?.attr('data-full-text');
             let company = {
                 company : companyName,
                 industry,
@@ -62,7 +61,7 @@ let scrape = async (callback)=>{
             return post;
         });
         response = await Promise.all(response)
-        callback(response);
+        callback({success:true, data : response});
         let elapsed = new Date().getTime()-renderStart;
         console.log(`Render in ${elapsed} ms`);
     }catch(er){
