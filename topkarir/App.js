@@ -43,7 +43,7 @@ let scrape = async (callback)=> {
             let expertise =  element.find('*:contains("Keahlian")td').parent().find('.jobval').text()?.trim();
             let required =  element.find('*:contains("Jumlah yang dibutuhkan")td').parent().find('.jobval').text()?.trim();
             let placed =  element.find('*:contains("Ditempatkan")td').parent().find('.jobval').text()?.trim();
-            let description =  element.find('.jobdesc').first().html()?.trim()?.replace(/\s/g,'');
+            let description =  element.find('.jobdesc .desc').first().html()?.trim();
             let aboutCompany = element.find('#comp-detail .jobdesc')?.first()?.html()?.trim();
             let elCompanyAddress = element.find('.jobloc .detail .title').first();
             let companyAddress =``;
