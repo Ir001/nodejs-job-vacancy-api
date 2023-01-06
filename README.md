@@ -4,7 +4,7 @@ Implementasi belajar Nodejs menggunakan package axios, cheerio, dan ExpressJS. P
 
 ## Demo
 
-[Demo API](https://job-vacancy-api.herokuapp.com/)
+[Demo API](https://job-vacancy-api.herokuapp.com/) [Service Unavailable]
 
 ## Installation
 
@@ -17,19 +17,16 @@ npm start
 
 ## Usage
 
-Run in Browser.
-
-```
-http://localhost:3000/?limit=10
-```
-
-Limit maximal 25.
-
-## Preview
-
-![Response](https://github.com/Ir001/nodejs-job-vacancy-api/blob/main/screenshot.png?raw=true)
+Request below URL:
+`http://localhost:3000/top-karir` [GET]
+`http://localhost:3000/joblum` [GET]
 
 ## Change Log
+
+5 Jan 2023
+<ul>
+<li>~ Fix scraping content of article</li>
+</ul>
 
 4 Feb 2021
 
