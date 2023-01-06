@@ -10,16 +10,19 @@ Implementasi belajar Nodejs menggunakan package axios, cheerio, dan ExpressJS. P
 
 ```bash
 git clone https://github.com/Ir001/nodejs-job-vacancy-api.git
-cd nodejs-job-vacancy-api
+```
+`cd nodejs-job-vacancy-api`
+
+```bash 
 npm install
 npm start
 ```
 
 ## Usage
 
-Request below URL:
-`http://localhost:3000/top-karir` [GET]
-`http://localhost:3000/joblum` [GET]
+Request below URL: <br/> 
+`http://localhost:3000/top-karir` [GET] <br/> 
+`http://localhost:3000/joblum` [GET] <br/> 
 
 ## Change Log
 
